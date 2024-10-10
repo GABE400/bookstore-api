@@ -1,0 +1,32 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Output of build process (if applicable)
+dist/
+build/
+
+# Debugging
+.vscode/
+
+# IDE files (optional)
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage reports (if using testing frameworks)
+coverage/
+
+# Temporary files
+tmp/
