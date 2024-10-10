@@ -95,3 +95,28 @@ exports.deleteBook = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// Search for books by title, author, or ISBN
+exports.searchBooks = async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    // Perform a case-insensitive search by title, author, or ISBN
+    const books = await Book.find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { author: { $regex: query, $options: "i" } },
+        { isbn: { $regex: query, $options: "i" } },
+      ],
+    });
+
+    if (books.length === 0) {
+      return res.status(404).json({ message: "No books found" });
+    }
+
+    res.status(200).json(books);
+  } catch (error) {
+    console.error("Error searching for books:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
